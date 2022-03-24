@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Libro {
 	private String titolo;
@@ -22,6 +23,29 @@ public class Libro {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(isbn, titolo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Libro other = (Libro) obj;
+		return Objects.equals(isbn, other.isbn) && Objects.equals(titolo, other.titolo);
+	}
+	
+	
+	
 
 	@Override
 	public String toString() {

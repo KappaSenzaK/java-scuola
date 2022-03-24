@@ -1,3 +1,4 @@
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -6,11 +7,15 @@ public class MainMenu {
 	private Scanner scanner = new Scanner(System.in);
 	
 	{
-		start();
-		
 		bibliotecaManagement = BibliotecaManagement.getInstance();
+		
+		
+		
 	}
 	
+	{
+		start();
+	}
 	
 	
 	public void start() {
@@ -27,7 +32,7 @@ public class MainMenu {
 				System.out.println("Inserisci una scelta: ");
 				try {
 					userInput = Integer.parseInt(scanner.nextLine());
-					if(userInput < 0 || userInput >= 6) {
+					if(userInput < 0 || userInput >= 8) {
 						throw new IllegalArgumentException("Numero invalido");
 					}
 					else {
@@ -117,7 +122,20 @@ public class MainMenu {
 				}
 				break;
 			}
+			case 6: {
+				Libro newLibro = newLibro();
+				bibliotecaManagement.addLibro(newLibro);
+				break;
+			}
+			case 7:{
+				Socio socio = newSocio();
+				bibliotecaManagement.addSocio(socio);
+				break;
+			}
 			
+			default:{
+				throw new IllegalArgumentException();
+			}
 			
 			}
 		} while (ok);
@@ -133,6 +151,8 @@ public class MainMenu {
 		System.out.println("3: verifica del prestito di un libro con indicazione dei dati del socio che lo ha preso");
 		System.out.println("4: memorizzazione di un nuovo prestito");
 		System.out.println("5: restituzione di un libro");
+		System.out.println("6: inserisci un libro");
+		System.out.println("7: inserisci un socio");
 	}
 	
 	
